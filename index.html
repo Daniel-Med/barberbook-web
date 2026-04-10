@@ -22,11 +22,16 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            overflow-x: hidden;
         }
 
         /* === NOISE OVERLAY === */
@@ -362,10 +367,20 @@
 
         /* === RESPONSIVE === */
         @media (max-width: 640px) {
-            .downloads { flex-direction: column; align-items: center; }
-            .btn-download { width: 100%; max-width: 300px; justify-content: center; }
-            .step { gap: 1.2rem; }
+            .hero { padding: 2rem 1.2rem; min-height: 90vh; }
+            h1 { font-size: 2.5rem; word-break: break-word; }
+            .subtitle { font-size: 1rem; padding: 0 0.5rem; }
+            .downloads { flex-direction: column; align-items: stretch; padding: 0 1rem; }
+            .btn-download { width: 100%; justify-content: center; }
+            .features { padding: 4rem 1.2rem; }
+            .features-title { font-size: 1.8rem; }
             .features-grid { grid-template-columns: 1fr; }
+            .feature-card { padding: 2rem 1.5rem; }
+            .steps { padding: 3rem 1.2rem; }
+            .steps-title { font-size: 1.8rem; }
+            .step { gap: 1rem; }
+            .step-number { width: 40px; height: 40px; font-size: 1rem; }
+            footer { padding: 2rem 1.2rem; }
         }
     </style>
 </head>
