@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberBook — Reserva tu cita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #e8c94b;
+            --gold-dark: #b8960c;
+            --bg-primary: #0d0d14;
+            --bg-surface: #161622;
+            --bg-card: #1c1c2e;
+            --text-primary: #f0ece2;
+            --text-secondary: #9a9aad;
+            --border: #2a2a3d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* === NOISE OVERLAY === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo-icon span {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 .gold { color: var(--gold); }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* === DOWNLOAD BUTTONS === */
+        .downloads {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn-windows {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+
+        .btn-windows:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.3);
+        }
+
+        .btn-android {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-android:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.1);
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .btn-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .btn-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-platform {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* === FEATURES === */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .features-sub {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold-dark);
+            transform: translateY(-4px);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .feature-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* === HOW IT WORKS === */
+        .steps {
+            padding: 4rem 2rem 6rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .steps-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .footer-text a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === SCROLL ANIMATIONS === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .downloads { flex-direction: column; align-items: center; }
+            .btn-download { width: 100%; max-width: 300px; justify-content: center; }
+            .step { gap: 1.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="logo-icon"><span>B</span></div>
+        <h1>Barber<span class="gold">Book</span></h1>
+        <p class="subtitle">
+            Reserva tu cita en la barbería desde cualquier lugar.
+            Sin llamadas, sin esperas. Solo elige, reserva y listo.
+        </p>
+        <div class="downloads">
+            <a href="https://github.com/Daniel-Med/BarberBook/releases/latest/download/BarberBook-Windows.zip"
+               class="btn-download btn-windows">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                </svg>
+                <div class="btn-text-group">
+                    <span class="btn-label">Descargar para</span>
+                    <span class="btn-platform">Windows</span>
+                </div>
+            </a>
+            <a href="https://github.com/Daniel-Med/BarberBook/releases/latest/download/BarberBook-Android.apk"
+               class="btn-download btn-android">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.523 2.246l1.745-3.023a.4.4 0 00-.7-.4L16.8 1.882A10.456 10.456 0 0012 .9a10.456 10.456 0 00-4.8.98L5.432-1.177a.4.4 0 00-.7.4L6.477 2.246A9.5 9.5 0 001.2 10.4h21.6a9.5 9.5 0 00-5.277-8.154zM7.2 7.6a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zm9.6 0a1.2 1.2 0 110-2.4 1.2 1.2 0 010 2.4zM1.2 11.6v9.6a1.2 1.2 0 002.4 0v-9.6zm19.2 0v9.6a1.2 1.2 0 002.4 0v-9.6zM3.6 11.6v10.8A1.8 1.8 0 005.4 24h1.8v-3.6a1.2 1.2 0 012.4 0V24h4.8v-3.6a1.2 1.2 0 012.4 0V24h1.8a1.8 1.8 0 001.8-1.8V11.6z"/>
+                </svg>
+                <div class="btn-text-group">
+                    <span class="btn-label">Descargar para</span>
+                    <span class="btn-platform">Android</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <h2 class="features-title reveal">¿Por qué BarberBook?</h2>
+        <p class="features-sub reveal">Todo lo que necesitas para gestionar tus citas</p>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <span class="feature-emoji">📱</span>
+                <h3 class="feature-name">Reserva al instante</h3>
+                <p class="feature-desc">Elige peluquero, servicio, día y hora en segundos. Sin llamadas ni esperas.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-emoji">💳</span>
+                <h3 class="feature-name">Pago online seguro</h3>
+                <p class="feature-desc">Paga desde la app con Stripe. Rápido, seguro y sin efectivo.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-emoji">🔔</span>
+                <h3 class="feature-name">Sin contraseñas</h3>
+                <p class="feature-desc">Entra solo con tu email. Te enviamos un código de acceso al momento.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-emoji">📊</span>
+                <h3 class="feature-name">Tu historial completo</h3>
+                <p class="feature-desc">Consulta tus citas pasadas, próximas reservas y tu gasto total.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-emoji">✂️</span>
+                <h3 class="feature-name">Elige tu peluquero</h3>
+                <p class="feature-desc">Selecciona al profesional que prefieras y ve sus horas disponibles en tiempo real.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="feature-emoji">🕐</span>
+                <h3 class="feature-name">Disponibilidad real</h3>
+                <p class="feature-desc">Solo ves las horas libres. Sin solapamientos ni sorpresas al llegar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="steps">
+        <h2 class="steps-title reveal">¿Cómo funciona?</h2>
+        <div class="step reveal">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Descarga la app</h3>
+                <p>Disponible para Windows y Android. Instala y abre en segundos.</p>
+            </div>
+        </div>
+        <div class="step reveal">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Entra con tu email</h3>
+                <p>Introduce tu correo y recibe un código de acceso. Sin contraseñas.</p>
+            </div>
+        </div>
+        <div class="step reveal">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Reserva tu cita</h3>
+                <p>Elige peluquero, servicios, fecha y hora. Confirma y listo.</p>
+            </div>
+        </div>
+        <div class="step reveal">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Paga cuando quieras</h3>
+                <p>Paga online desde la app o presencialmente en la barbería.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">BarberBook</div>
+        <p class="footer-text">
+            Proyecto de fin de grado — DAM 2 · 2026<br>
+            <a href="https://github.com/Daniel-Med/BarberBook">Ver en GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
