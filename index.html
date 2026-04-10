@@ -69,36 +69,12 @@
             pointer-events: none;
         }
 
-        .logo-icon {
-            width: 80px;
-            height: 80px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
+        .hero-logo {
+            width: 280px;
+            height: auto;
+            margin-bottom: 1.5rem;
             animation: fadeInDown 1s ease-out;
         }
-
-        .logo-icon span {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 900;
-            color: var(--gold);
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        h1 .gold { color: var(--gold); }
 
         .subtitle {
             font-size: 1.2rem;
@@ -324,11 +300,9 @@
         }
 
         .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 0.8rem;
+            width: 80px;
+            height: auto;
+            margin: 0 auto 1rem;
         }
 
         .footer-text {
@@ -368,7 +342,7 @@
         /* === RESPONSIVE === */
         @media (max-width: 640px) {
             .hero { padding: 2rem 1.2rem; min-height: 90vh; }
-            h1 { font-size: 2.5rem; word-break: break-word; }
+            .hero-logo { width: 200px; }
             .subtitle { font-size: 1rem; padding: 0 0.5rem; }
             .downloads { flex-direction: column; align-items: stretch; padding: 0 1rem; }
             .btn-download { width: 100%; justify-content: center; }
@@ -381,6 +355,7 @@
             .step { gap: 1rem; }
             .step-number { width: 40px; height: 40px; font-size: 1rem; }
             footer { padding: 2rem 1.2rem; }
+            .footer-logo { width: 60px; }
         }
     </style>
 </head>
@@ -388,8 +363,7 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div class="logo-icon"><span>B</span></div>
-        <h1>Barber<span class="gold">Book</span></h1>
+        <img src="barberbook_logo.png" alt="BarberBook" class="hero-logo">
         <p class="subtitle">
             Reserva tu cita en la barbería desde cualquier lugar.
             Sin llamadas, sin esperas. Solo elige, reserva y listo.
@@ -491,7 +465,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-logo">BarberBook</div>
+        <img src="barberbook_logo.png" alt="BarberBook" class="footer-logo">
         <p class="footer-text">
             Proyecto de fin de grado — DAM 2 · 2026<br>
             <a href="https://github.com/Daniel-Med/BarberBook">Ver en GitHub</a>
