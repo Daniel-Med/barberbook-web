@@ -293,6 +293,266 @@
             line-height: 1.6;
         }
 
+        /* === ENTERPRISE ACCESS === */
+        .enterprise-trigger {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .enterprise-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .enterprise-btn:hover {
+            border-color: var(--gold-dark);
+            color: var(--gold);
+        }
+
+        .enterprise-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* === PASSWORD MODAL === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .modal input:focus {
+            border-color: var(--gold);
+        }
+
+        .modal input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .modal-error {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .modal-btn-cancel {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-cancel:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .modal-btn-submit {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: var(--gold);
+            color: var(--bg-primary);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-submit:hover {
+            background: var(--gold-light);
+        }
+
+        /* === ENTERPRISE PANEL === */
+        .enterprise-panel {
+            display: none;
+            padding: 3rem 2rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .enterprise-panel.active {
+            display: block;
+        }
+
+        .enterprise-panel h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .enterprise-panel .ep-sub {
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        .enterprise-downloads {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .enterprise-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .enterprise-card:hover {
+            border-color: var(--gold-dark);
+        }
+
+        .ec-info {
+            flex: 1;
+        }
+
+        .ec-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .ec-info p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        .ec-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .ec-download {
+            padding: 10px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .ec-download-gold {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+
+        .ec-download-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-1px);
+        }
+
+        .ec-download-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .ec-download-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        .enterprise-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 300;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
         /* === FOOTER === */
         footer {
             border-top: 1px solid var(--border);
@@ -328,7 +588,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === SCROLL ANIMATIONS === */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -357,6 +616,9 @@
             .step-number { width: 40px; height: 40px; font-size: 1rem; }
             footer { padding: 2rem 1.2rem; }
             .footer-logo { width: 60px; }
+            .enterprise-card { flex-direction: column; text-align: center; }
+            .ec-info { text-align: center; }
+            .modal { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -464,6 +726,61 @@
         </div>
     </section>
 
+    <!-- ENTERPRISE ACCESS TRIGGER -->
+    <section class="enterprise-trigger">
+        <button class="enterprise-btn" onclick="document.getElementById('passwordModal').classList.add('active')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+            Acceso empresa
+        </button>
+    </section>
+
+    <!-- PASSWORD MODAL -->
+    <div class="modal-overlay" id="passwordModal">
+        <div class="modal">
+            <h3>Acceso empresa</h3>
+            <p>Introduce la contraseña de administrador para acceder a las descargas internas.</p>
+            <input type="password" id="enterprisePassword" placeholder="Contraseña" autocomplete="off"
+                   onkeydown="if(event.key==='Enter')checkPassword()">
+            <div class="modal-error" id="modalError">Contraseña incorrecta</div>
+            <div class="modal-buttons">
+                <button class="modal-btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button class="modal-btn-submit" onclick="checkPassword()">Acceder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ENTERPRISE PANEL (hidden) -->
+    <section class="enterprise-panel" id="enterprisePanel">
+        <h2 class="reveal">Panel de empresa</h2>
+        <p class="ep-sub reveal">Herramientas internas para la gestión de la peluquería</p>
+
+        <div class="enterprise-downloads">
+            <div class="enterprise-card reveal">
+                <div class="ec-info">
+                    <h4>🖥️ App Empresa</h4>
+                    <p>Panel de gestión completo: agenda, clientes, servicios, empleados, pagos y estadísticas.</p>
+                </div>
+                <span class="ec-badge">Windows</span>
+                <a href="https://daniel-med.github.io/barberbook-web/BarberBook-Empresa.zip"
+                   class="ec-download ec-download-gold">Descargar</a>
+            </div>
+
+            <div class="enterprise-card reveal">
+                <div class="ec-info">
+                    <h4>📱 App Datáfono</h4>
+                    <p>Cobro presencial, gestión de reservas del día y registro de pagos en efectivo o tarjeta.</p>
+                </div>
+                <span class="ec-badge">Android</span>
+                <a href="https://daniel-med.github.io/barberbook-web/BarberBook-Datafono.apk"
+                   class="ec-download ec-download-outline">Descargar</a>
+            </div>
+        </div>
+
+        <p class="enterprise-note">Estas aplicaciones son de uso interno. No compartas los enlaces de descarga.</p>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <img src="barberbook_logo.png" alt="BarberBook" class="footer-logo">
@@ -484,6 +801,48 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Enterprise password check
+        // Contraseña hasheada en SHA-256 para no dejarla en texto plano
+        // La contraseña es: barberbook2026
+        const HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function checkPassword() {
+            const input = document.getElementById('enterprisePassword');
+            const error = document.getElementById('modalError');
+            const hash = await sha256(input.value);
+
+            if (hash === HASH) {
+                closeModal();
+                document.getElementById('enterprisePanel').classList.add('active');
+                document.querySelector('.enterprise-trigger').style.display = 'none';
+                document.getElementById('enterprisePanel').scrollIntoView({ behavior: 'smooth' });
+                // Re-observe reveals
+                document.querySelectorAll('.enterprise-panel .reveal').forEach(el => observer.observe(el));
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('enterprisePassword').value = '';
+            document.getElementById('modalError').style.display = 'none';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('passwordModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
     </script>
 
 </body>
